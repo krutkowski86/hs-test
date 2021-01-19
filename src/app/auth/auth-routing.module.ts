@@ -1,28 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthFeatureComponent } from './auth-feature/auth-feature.component';
+import { AuthComponent } from './auth.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthFeatureComponent,
+    component: AuthComponent,
     children: [
       {
+        path: '',
+        component: AuthFeatureComponent
+      },
+      {
         path: 'post',
-        loadChildren: () =>
-          import('src/app/post/post.module').then((m) => m.PostModule),
+        loadChildren: () => import('src/app/post/post.module').then((m) => m.PostModule)
       },
       {
         path: 'preview',
-        loadChildren: () =>
-          import('src/app/preview/preview.module').then((m) => m.PreviewModule),
-      },
-    ],
-  },
+        loadChildren: () => import('src/app/preview/preview.module').then((m) => m.PreviewModule)
+      }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AuthRoutingModule {}
