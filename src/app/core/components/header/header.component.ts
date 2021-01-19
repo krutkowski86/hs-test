@@ -1,12 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header',
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
-  constructor() {}
+export class HeaderComponent {
+  constructor(private _router: Router) {}
 
-  ngOnInit(): void {}
+  goToLoginPage() {
+    this._router.navigate(['/login']);
+  }
 }
