@@ -8,11 +8,18 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { SnackWarnComponent } from './components/snack-warn/snack-warn.component';
+import { DialogInfoComponent } from './components/dialog-info/dialog-info.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, LoginComponent, PageNotFoundComponent, SnackWarnComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    PageNotFoundComponent,
+    SnackWarnComponent,
+    DialogInfoComponent
+  ],
   providers: [AuthGuard, LoginGuard],
-  exports: [HeaderComponent, FooterComponent, LoginComponent],
   imports: [SharedModule]
 })
 export class CoreModule {

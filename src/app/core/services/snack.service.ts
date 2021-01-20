@@ -17,7 +17,7 @@ export class SnackService {
 
   constructor(private _snackBar: MatSnackBar) {}
 
-  warnMsg(header: string, msg?: string) {
+  warning(header: string, msg?: string) {
     const config = new MatSnackBarConfig();
     config.data = { header, msg };
     config.verticalPosition = SnackService.VERTICAL_POSITION;

@@ -36,7 +36,7 @@ export class AuthGuard implements CanActivate, CanLoad {
 
   private snackOnFalse(authenticated) {
     if (!authenticated) {
-      this._snackService.warnMsg('User not authenticated');
+      this._snackService.warning('User not authenticated');
     }
   }
 }
