@@ -1,13 +1,15 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
 
+import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, LoginComponent, PageNotFoundComponent],
+  providers: [AuthGuard],
   exports: [HeaderComponent, FooterComponent, LoginComponent],
   imports: [SharedModule]
 })

@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  authenticated: boolean;
+  private authenticated: boolean;
 
   constructor() {}
 
@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    return this.authenticated;
+    return of(!!this.authenticated);
   }
 
   private loginUser() {
