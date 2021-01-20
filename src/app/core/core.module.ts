@@ -9,6 +9,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { SnackWarnComponent } from './components/snack-warn/snack-warn.component';
 import { DialogInfoComponent } from './components/dialog-info/dialog-info.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,15 @@ import { DialogInfoComponent } from './components/dialog-info/dialog-info.compon
     DialogInfoComponent
   ],
   exports: [HeaderComponent, FooterComponent],
-  providers: [AuthGuard, LoginGuard],
+  providers: [
+    AuthGuard,
+    LoginGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   imports: [SharedModule]
 })
 export class CoreModule {

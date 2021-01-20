@@ -38,7 +38,7 @@ export class MusicService {
   addPlaylistTrack(author: string, title: string, image: string) {
     return this.playlist().pipe(
       map((data) => ++data.lastId),
-      concatMap((lastId) => this.putPlaylistTrack(lastId, author, title, image))
+      concatMap((lastId) => this.postPlaylistTrack(lastId, author, title, image))
     );
   }
 
@@ -46,7 +46,7 @@ export class MusicService {
     return this._http.get<MusicPlaylistData[]>(`${environment.api}${MusicService.PLAYLIST_URL}`);
   }
 
-  private putPlaylistTrack(id: number, author: string, title: string, image: string) {
+  private postPlaylistTrack(id: number, author: string, title: string, image: string) {
     return this._http.post(
       `${environment.api}${MusicService.PLAYLIST_URL}`,
       {
