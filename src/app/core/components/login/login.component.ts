@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, LoginData } from '../../services/auth.service';
+import { SnackService } from '../../services/snack.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,12 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private _formBuilder: FormBuilder, private _authService: AuthService, private _router: Router) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _authService: AuthService,
+    private _router: Router,
+    private _snackService: SnackService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
@@ -31,11 +37,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this._authService.login().subscribe((logged) => {
-        if (logged) {
+      const { email, password }: LoginData = this.loginForm.getRawValue();
+      this._authService.login(email, password).subscribe(
+        () => {
           this._router.navigate(['/']);
+        },
+        () => {
+          this._snackService.warning('Invalid user');
         }
-      });
+      );
     }
   }
 }
