@@ -8,6 +8,6 @@ export class PreviewResolve implements Resolve<any> {
   constructor(private _musicService: MusicService) {}
 
   resolve() {
-    return this._musicService.getPlaylist();
+    return this._musicService.playlist();
   }
 }
