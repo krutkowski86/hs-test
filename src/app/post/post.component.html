@@ -1,1 +1,17 @@
-<p>post works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="postForm">
+  <p>
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Author</mat-label>
+      <input matInput formControlName="author" />
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="w-100">
+      <mat-label>Image (URL)</mat-label>
+      <input matInput formControlName="image" />
+    </mat-form-field>
+  </p>
+  <button type="submit" mat-flat-button color="primary">Submit</button>
+</form>
