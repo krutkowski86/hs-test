@@ -24,7 +24,6 @@ export class SnackService {
     config.horizontalPosition = SnackService.HORIZONTAL_POSITION;
     config.duration = SnackService.DURATION;
     config.panelClass = 'snack-bar-warn';
-    console.log('aaaa');
     this._snackBar.openFromComponent(SnackWarnComponent, config);
   }
 }

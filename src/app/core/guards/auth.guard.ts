@@ -35,9 +35,7 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
 
   private snackOnFalse(authenticated) {
-    console.log(authenticated);
     if (!authenticated) {
-      console.log('not');
       this._snackService.warnMsg('User not authenticated');
     }
   }
