@@ -7,9 +7,10 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
+import { SnackWarnComponent } from './components/snack-warn/snack-warn.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, LoginComponent, PageNotFoundComponent],
+  declarations: [HeaderComponent, FooterComponent, LoginComponent, PageNotFoundComponent, SnackWarnComponent],
   providers: [AuthGuard, LoginGuard],
   exports: [HeaderComponent, FooterComponent, LoginComponent],
   imports: [SharedModule]
