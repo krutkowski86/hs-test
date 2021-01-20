@@ -6,10 +6,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, LoginComponent, PageNotFoundComponent],
-  providers: [AuthGuard],
+  providers: [AuthGuard, LoginGuard],
   exports: [HeaderComponent, FooterComponent, LoginComponent],
   imports: [SharedModule]
 })

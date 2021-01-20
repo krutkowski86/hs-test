@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate, CanLoad {
   private isAuthenticated(guardType: string) {
     return this._authService
       .isAuthenticated()
-      .pipe(tap((authenticated) => console.warn(`[${guardType}] Authenticated: ${authenticated}`)));
+      .pipe(tap((authenticated) => console.warn(`[AuthGuard ${guardType}] Authenticated: ${authenticated}`)));
   }
 
   private loginOnFalse(authenticated: boolean) {
