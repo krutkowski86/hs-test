@@ -6,7 +6,12 @@
       </a>
     </div>
     <div class="col text-right">
-      <button mat-stroked-button color="primary" routerLink="login">Login</button>
+      <button *ngIf="!authenticated; else logoutBtn" mat-stroked-button color="primary" routerLink="login">
+        Login
+      </button>
+      <ng-template #logoutBtn>
+        <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
+      </ng-template>
     </div>
   </div>
 </div>
