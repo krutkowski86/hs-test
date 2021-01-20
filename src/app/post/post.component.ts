@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { concatMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { concatMap, takeUntil } from 'rxjs/operators';
 
 import { MusicService } from '../auth/services/music.service';
 import { DialogService } from '../core/services/dialog.service';
@@ -11,7 +12,8 @@ import { DialogService } from '../core/services/dialog.service';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
   postForm: FormGroup;
 
   constructor(
@@ -33,10 +35,18 @@ export class PostComponent implements OnInit {
       const { title, author, image } = this.postForm.getRawValue();
       this._musicService
         .addPlaylistTrack(author, title, image)
-        .pipe(concatMap(() => this._dialogService.info('Success', 'New track added to your playlist')))
+        .pipe(
+          concatMap(() => this._dialogService.info('Success', 'New track added to your playlist')),
+          takeUntil(this.destroy$)
+        )
         .subscribe(() => {
           this.postForm.reset();
         });
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
