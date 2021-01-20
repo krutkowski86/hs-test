@@ -19,6 +19,7 @@ import { DialogInfoComponent } from './components/dialog-info/dialog-info.compon
     SnackWarnComponent,
     DialogInfoComponent
   ],
+  exports: [HeaderComponent, FooterComponent],
   providers: [AuthGuard, LoginGuard],
   imports: [SharedModule]
 })
