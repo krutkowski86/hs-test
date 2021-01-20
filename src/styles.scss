@@ -19,3 +19,14 @@ header {
     }
   }
 }
+
+.thumbnail {
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  @include media-breakpoint-down(xs) {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+  }
+}

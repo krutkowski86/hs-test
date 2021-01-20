@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from '../shared/shared.module';
 import { PreviewRoutingModule } from './preview-routing.module';
 import { PreviewComponent } from './preview.component';
+import { PreviewResolve } from './preview.resolve';
 
 @NgModule({
   declarations: [PreviewComponent],
-  imports: [CommonModule, PreviewRoutingModule]
+  providers: [PreviewResolve],
+  imports: [SharedModule, PreviewRoutingModule]
 })
 export class PreviewModule {}

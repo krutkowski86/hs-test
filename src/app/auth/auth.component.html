@@ -1,9 +1,21 @@
 <div class="container">
   <nav mat-tab-nav-bar>
-    <a mat-tab-link routerLink="/post" routerLinkActive #postRla="routerLinkActive" [active]="postRla.isActive">Post</a>
-    <a mat-tab-link routerLink="/preview" routerLinkActive #previewRla="routerLinkActive" [active]="previewRla.isActive"
-      >Preview</a
+    <a mat-tab-link routerLink="/post" routerLinkActive #postRla="routerLinkActive" [active]="postRla.isActive">
+      Post
+    </a>
+    <a
+      mat-tab-link
+      routerLink="/preview"
+      routerLinkActive
+      #previewRla="routerLinkActive"
+      [active]="previewRla.isActive"
     >
+      Preview
+    </a>
   </nav>
-  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-12 mt-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
