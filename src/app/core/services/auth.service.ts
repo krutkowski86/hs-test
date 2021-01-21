@@ -18,19 +18,27 @@ export interface LoginData {
   providedIn: 'root'
 })
 export class AuthService {
-  private userStateSource = new BehaviorSubject<UserState>({ authenticated: false });
+  private userStateSource = new BehaviorSubject<UserState>(this.getDefaultUserState());
   userState$ = this.userStateSource.asObservable();
 
   constructor(private _http: HttpClient) {}
 
   login(email: string, password: string) {
     return this.loginUserRequest(email, password).pipe(
-      tap(({ jwt }) => this.userStateSource.next({ authenticated: true, token: jwt }))
+      tap(({ jwt }) => {
+        sessionStorage.setItem('token', jwt);
+        this.userStateSource.next({ authenticated: true, token: jwt });
+      })
     );
   }
 
   logout() {
-    return this.logoutUserRequest().pipe(tap(() => this.userStateSource.next({ authenticated: false })));
+    return this.logoutUserRequest().pipe(
+      tap(() => {
+        sessionStorage.clear();
+        this.userStateSource.next({ authenticated: false });
+      })
+    );
   }
 
   isAuthenticated() {
@@ -38,6 +46,19 @@ export class AuthService {
       first(),
       map(({ authenticated }) => authenticated)
     );
+  }
+
+  private getDefaultUserState(): UserState {
+    const token = sessionStorage.getItem('token');
+
+    return !!token
+      ? {
+          authenticated: true,
+          token
+        }
+      : {
+          authenticated: false
+        };
   }
 
   private loginUserRequest(email: string, password: string) {
