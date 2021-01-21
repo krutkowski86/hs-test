@@ -8,6 +8,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 `npm run api` - API
 
-`npm run api-authentication"` - API authentication
+`npm run api-authentication` - API authentication
 
 Valid users database `/src/api/user.json`
