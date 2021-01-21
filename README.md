@@ -10,4 +10,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 `npm run api-authentication"` - API authentication
 
-Valid users database `/src/user.json`
+Valid users database `/src/api/user.json`
