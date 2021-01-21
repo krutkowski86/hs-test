@@ -7,3 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 `npm run app` - app serve
 
 `npm run api` - API
+
+`npm run api-authentication"` - API authentication
+
+Valid users database `/src/user.json`
